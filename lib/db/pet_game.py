@@ -2,14 +2,13 @@ import pygame
 import random
 import sys
 
-
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 WIDTH, HEIGHT = 400, 400
 
-class Pet:
-    def __init__(self, name,):
+class Pets:
+    def __init__(self, name):
         self.name = name
         self.hunger = 50
         self.happiness = 50
@@ -42,7 +41,13 @@ def draw_text(screen, text, x, y, font_size=20):
     text_surface = font.render(text, True, WHITE)
     text_rect = text_surface.get_rect(center=(x, y))
     screen.blit(text_surface, text_rect)
-
+ASCII_ART = '''
+   ___           __       __    _____                          _             
+  / _ \___  ____/ /_____ / /_  / ___/__  __ _  ___  ___ ____  (_)__  ___  ___
+ / ___/ _ \/ __/  '_/ -_) __/ / /__/ _ \/  ' \/ _ \/ _ `/ _ \/ / _ \/ _ \(_-<
+/_/   \___/\__/_/\_\\__/\__/  \___/\___/_/_/_/ .__/\_,_/_//_/_/\___/_//_/___/
+                                            /_/                              
+'''
 def main():
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -51,9 +56,7 @@ def main():
     clock = pygame.time.Clock()
 
     name = input("Enter your pet's name: ")
-    pet = Pet(name)
-
-
+    pet = Pets(name)
 
     while True:
         for event in pygame.event.get():
@@ -71,7 +74,8 @@ def main():
         draw_text(screen, "1. Feed", WIDTH // 2, 250)
         draw_text(screen, "2. Park Trip", WIDTH // 2, 280)
         draw_text(screen, "3. Vet Visit", WIDTH // 2, 310)
-        draw_text(screen, "4. Exit", WIDTH // 2, 340)
+        draw_text(screen, "4. Show Tuple", WIDTH // 2, 340)  # Added tuple option
+        draw_text(screen, "5. Exit", WIDTH // 2, 370)
 
         pygame.display.flip()
 
@@ -84,6 +88,9 @@ def main():
         elif choice == '3':
             pet.heal()
         elif choice == '4':
+            my_tuple = ("Hi", "heres", "my", "tuple")
+            print(my_tuple)
+        elif choice == '5':
             print("Exiting the game.")
             break
         else:
@@ -94,14 +101,13 @@ def main():
             pet.health -= 10
 
             if random.randint(1, 10) == 2:
-             print(f"Oh no! A random event occurred. {name} Pee'd in the house.")
-            pet.happiness -= 10
+                print(f"Oh no! A random event occurred. {name} Pee'd in the house.")
+                pet.happiness -= 10
 
             if random.randint(1, 10) == 3:
-             print(f"Oh no! A random event occurred. {name} found a dead bird to play with.")
-            pet.health -= 10
-            pet.happiness +=10
-
+                print(f"Oh no! A random event occurred. {name} found a dead bird to play with.")
+                pet.health -= 10
+                pet.happiness += 10
 
         pet.update_status()
 
@@ -119,5 +125,5 @@ def main():
 
         clock.tick(5)
 
-if __name__ == "__main__":   
- main()
+if __name__ == "__main__":
+    main()

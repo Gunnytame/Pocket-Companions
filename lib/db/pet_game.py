@@ -41,20 +41,23 @@ def draw_text(screen, text, x, y, font_size=20):
     text_surface = font.render(text, True, WHITE)
     text_rect = text_surface.get_rect(center=(x, y))
     screen.blit(text_surface, text_rect)
-ASCII_ART = '''
+
+def main():
+
+    ASCII_ART = '''
    ___           __       __    _____                          _             
   / _ \___  ____/ /_____ / /_  / ___/__  __ _  ___  ___ ____  (_)__  ___  ___
  / ___/ _ \/ __/  '_/ -_) __/ / /__/ _ \/  ' \/ _ \/ _ `/ _ \/ / _ \/ _ \(_-<
 /_/   \___/\__/_/\_\\__/\__/  \___/\___/_/_/_/ .__/\_,_/_//_/_/\___/_//_/___/
                                             /_/                              
 '''
-def main():
+    
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Pocket Companions")
 
+    input(ASCII_ART)
     clock = pygame.time.Clock()
-
     name = input("Enter your pet's name: ")
     pet = Pets(name)
 
@@ -88,7 +91,7 @@ def main():
         elif choice == '3':
             pet.heal()
         elif choice == '4':
-            my_tuple = ("Hi", "heres", "my", "tuple")
+            my_tuple = ("Hi", "heres", "my", "tuple, also, this, counts, as, A, list")
             print(my_tuple)
         elif choice == '5':
             print("Exiting the game.")
@@ -97,7 +100,7 @@ def main():
             print("Invalid choice. Try again.")
 
         if random.randint(1, 10) == 1:
-            print(f"Oh no! A random event occurred. {name} threw up a nasty hairball.")
+            print(f"Oh no! A random event occurred. {name} threw up on your new couch.")
             pet.health -= 10
 
             if random.randint(1, 10) == 2:
